@@ -1,0 +1,219 @@
+:root{
+  --radius: 20px;
+  --gap: 18px;
+  --text-dark:#1a1a2e;
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+
+body{
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background:#eef0f4;
+  padding: 30px;
+}
+
+.bento{
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: 1fr 1.15fr 1.15fr 1fr;
+  grid-template-areas:
+    "idea hero hero consistency"
+    "idea good plan dreams"
+    "share follow plan dreams";
+}
+
+.card{
+  border-radius: var(--radius);
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 220px;
+  color: var(--text-dark);
+}
+
+.card h2{
+  font-size: 1.7rem;
+  line-height: 1.25;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.card p{
+  font-size: 0.95rem;
+  line-height: 1.4;
+  opacity: 0.85;
+  max-width: 320px;
+}
+
+.accent{ color:#6c5ce7; font-style: italic; }
+.accent-green{ color:#1e8a5f; font-style: italic; text-decoration: underline; }
+
+/* ---------- background image placeholder layer ---------- */
+/* Replace the url('') below in each .bg-photo with your own image link */
+.bg-photo{
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+.card > *:not(.bg-photo){ position: relative; z-index: 1; }
+
+/* ---------------- individual cards ---------------- */
+
+.idea{
+  grid-area: idea;
+  background: #f8f1e0;
+  justify-content: space-between;
+}
+.idea .steps{ font-size:0.85rem; opacity:0.7; margin: 14px 0 20px; }
+.idea .btn{
+  align-self: flex-start;
+  background:#6c5ce7;
+  color:#fff;
+  border:none;
+  padding: 12px 22px;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  cursor:pointer;
+}
+.idea .bg-photo{
+  top: auto;
+  height: 65%;
+  /* IMAGE LINK: laptop + plant on desk */
+  background-image: url("./images/image.png");
+  opacity: 0.9;
+}
+
+.hero{
+  grid-area: hero;
+  background: linear-gradient(120deg,#8f7fe0,#6c5ce7);
+  color:#fff;
+  justify-content: center;
+}
+.hero .bg-photo{
+  right:0%; left:60%;
+  /* IMAGE LINK: person sitting on mountain rock */
+  background-image: url("./images/image copy.png");
+}
+.hero::before{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(90deg, rgba(108,92,231,0.95) 40%, rgba(108,92,231,0) 100%);
+  z-index:0;
+}
+.hero .eyebrow{ font-size:0.75rem; letter-spacing:1px; opacity:0.85; margin-bottom:10px; }
+.hero h1{ font-size:2.2rem; line-height:1.15; font-weight:800; margin-bottom:12px; }
+.hero p{ color:#fff; opacity:0.9; max-width:360px; margin-bottom:22px; }
+.hero .stats{ display:flex; gap:24px; font-size:0.9rem; }
+.hero .stats b{ display:block; font-size:1.1rem; }
+
+.consistency{
+  grid-area: consistency;
+  background:#e3f3e6;
+  justify-content: space-between;
+}
+.consistency .bg-photo{
+  top:auto; height:80%;
+  /* IMAGE LINK: stacked books + plant */
+  background-image: url("./images/image copy 2.png");
+}
+
+.good{
+  grid-area: good;
+  background:#dbe9fb;
+  padding:0;
+  display:flex;
+  flex-direction: row;
+  align-items:center;
+}
+.good .bg-photo{
+  position: static;
+  width:55%;
+  height:90%;
+  border-radius: var(--radius) 0 0 var(--radius);
+  /* IMAGE LINK: person sitting on coastal cliff */
+  background-image: url("./images/image copy 3.png");
+}
+.good .quote{
+  padding: 20px;
+  font-style: italic;
+  font-size:1.1rem;
+  line-height:1.3;
+}
+
+.plan{
+  grid-area: plan;
+  background:#fbe9d2;
+  justify-content: space-between;
+}
+.plan .bg-photo{
+  top:auto; height:65%;
+  /* IMAGE LINK: notebook with content plan checklist */
+  background-image: url("./images/image copy 4.png");
+}
+
+.dreams{
+  grid-area: dreams;
+  background: linear-gradient(180deg,#bcd8f5,#e8d9c3);
+  justify-content: flex-start;
+}
+.dreams .bg-photo{
+  top:auto; height:55%;
+  /* IMAGE LINK: mountain sunset */
+  background-image: url("./images/image copy 5.png");
+}
+
+.share{
+  grid-area: share;
+  background:#fbdfe6;
+  justify-content: space-between;
+}
+.share .bg-photo{
+  top:auto; height:65%;
+  /* IMAGE LINK: hand holding phone with coffee */
+  background-image: url("./images/image copy 6.png");
+}
+
+.follow{
+  grid-area: follow;
+  background:#e6def7;
+  padding:0;
+  display:flex;
+  align-items:flex-end;
+}
+.follow .bg-photo{
+  position:static;
+  width:100%; height:60%;
+  margin-top:auto;
+  /* IMAGE LINK: hands together, community */
+  background-image: url("./images/image copy 7.png");
+}
+.follow .text{ padding:20px; }
+
+/* ---------------- MOBILE VIEW ---------------- */
+@media (max-width: 768px){
+  .bento{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "idea"
+      "hero"
+      "consistency"
+      "good"
+      "plan"
+      "dreams"
+      "share"
+      "follow";
+  }
+  .card{ min-height: 260px; }
+  .hero h1{ font-size:1.8rem; }
+  .hero .bg-photo{ left:0; opacity:0.35; }
+  .hero::before{ background: rgba(108,92,231,0.9); }
+  .good{ flex-direction: column; }
+  .good .bg-photo{ width:100%; height:180px; border-radius: var(--radius) var(--radius) 0 0; }
+}
